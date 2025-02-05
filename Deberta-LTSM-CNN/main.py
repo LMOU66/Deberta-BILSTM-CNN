@@ -79,6 +79,19 @@ def preprocess_dataset(data, text_column, label_columns, max_length=128):
         'attention_mask': tokenized_texts['attention_mask'],
         'labels': torch.tensor(labels, dtype=torch.float)
     }
+def preprocess_test_data(data, text_column, tokenizer, max_length=128):
+    texts = data[text_column].tolist()
+    tokenized_texts = tokenizer(
+        texts,
+        max_length=max_length,
+        padding='max_length',
+        truncation=True,
+        return_tensors="pt"
+    )
+    return {
+        'input_ids': tokenized_texts['input_ids'],
+        'attention_mask': tokenized_texts['attention_mask']
+    }
 
 
 data = pd.read_csv('data/aug_train.csv')
