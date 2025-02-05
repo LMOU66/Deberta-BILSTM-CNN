@@ -8,8 +8,6 @@ from transformers import DebertaTokenizer
 tokenizer = DebertaTokenizer.from_pretrained('microsoft/deberta-large')
 deberta_model = DebertaModel.from_pretrained('microsoft/deberta-large')
 
-sample_text = "This is a sample sentence for testing the DeBERTa model."
-inputs = tokenizer(sample_text, return_tensors="pt", max_length=128, padding="max_length", truncation=True)
 
 
 class HybridDeBERTaModel(nn.Module):
